@@ -1,11 +1,13 @@
 ---
-title: "Untitled"
+title: "Data set up"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Below is the code used to previously get the data into a working data set.
 
 ```{r}
 library(tidyverse)
@@ -26,5 +28,26 @@ measures_df <- maternity_df %>% select(1, 3, 4, 6, 9) %>%
 hospitalnames_df <- maternity_df %>% group_by(Hospital.Name) %>% count() %>% select(1)
 
 write.csv(hospitalnames_df, "hospitalnames.csv")
+```
+
+```{r}
+library(leaflet)
+hospitalgeocode_df <- read.csv("data/hospitalsgeocode.csv")
+
+hospitalgeocode_df <- hospitalgeocode_df %>% separate(Place, into = c("Hospital", "State"), sep = ",")
+
+awesome <- makeAwesomeIcon(
+  icon = "ios-clos",
+  iconColor = "black",
+  markerColor = "blue",
+  library = "ion"
+)
+
+leaflet(hospitalgeocode_df) %>% 
+  addTiles() %>% 
+  addProviderTiles(providers$Wikimedia) %>% 
+  addAwesomeMarkers(lng = hospitalgeocode_df$lon, lat = hospitalgeocode_df$lat, 
+             popup = hospitalgeocode_df$Hospital, 
+             icon = awesome)
 ```
 

@@ -9,7 +9,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Project
 
-app that allows user to choose a state and a health statistic to see a map of data, tab with scatterplot of stat vs stat, each point is a state
-
 maternity map with points, change year and variable
 maternity var vs var, can change vars and year
+
+line plot: select a county, select a hospital?, select a category, select a measure? would need a wait and submit button so not too overwhelming
+
+scatterplot: options: compare one variable over different years, compare multiple variables:
+- first option: choose variable, choose year for x- and y-axis
+- second option: choose year, choose variable for x- and y-axis
+add an option to aggregate over all years?
