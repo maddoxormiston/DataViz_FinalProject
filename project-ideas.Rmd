@@ -1,0 +1,15 @@
+---
+title: "project-ideas"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project
+
+app that allows user to choose a state and a health statistic to see a map of data, tab with scatterplot of stat vs stat, each point is a state
+
+maternity map with points, change year and variable
+maternity var vs var, can change vars and year
