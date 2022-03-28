@@ -1,0 +1,56 @@
+---
+title: "Map Functions"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Practicing a function to create an interactive Leaflet map
+
+```{r}
+measuresloc_df <- full_join(measures_df, hospitalgeocode_df, by = c("Hospital.Name" = "Hospital"))
+
+library(leaflet)
+awesome <- makeAwesomeIcon(
+  icon = "ios-clos",
+  iconColor = "black",
+  markerColor = "blue",
+  library = "ion"
+)
+
+## this will be used to create a reactive data set in the shiny app
+measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008)
+
+leaflet(measuresloc_df) %>% 
+  addTiles() %>% 
+  addProviderTiles(providers$Wikimedia) %>% 
+  addAwesomeMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
+             popup = paste0(measuresloc_2008$Hospital.Name, ", ", measuresloc_2008$Episiotomy), 
+             icon = awesome)
+```
+
+```{r}
+library(plotly)
+
+measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
+
+xvar <- measuresloc_var %>% filter(Year == 2008) %>% rename(xvar = Episiotomy)
+
+yvar <- measuresloc_var %>% filter(Year == 2011) %>% rename(yvar = Episiotomy)
+
+both_df <- full_join(xvar, yvar, by = "Hospital.Name")
+
+g1 <- ggplot(data = both_df, aes(x = xvar, y = yvar)) + geom_point(aes(label = Hospital.Name)) + xlim(0, 2000) + ylim(0, 2000) + geom_smooth()
+
+ggplotly(g1, tooltip = "label")
+```
+
+```{r}
+## second graph:
+g2 <- ggplot(data = measuresloc_2008, aes(x = Episiotomy, y = Analgesia)) + 
+  geom_point(aes(label = Hospital.Name)) + xlim(0, 1500) + ylim(0, 1500) + geom_smooth(se = F)
+
+ggplotly(g2, tooltip = "label")
+```
