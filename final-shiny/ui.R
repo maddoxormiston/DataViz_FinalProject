@@ -1,40 +1,55 @@
 library(shiny)
+library(here)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
+measuresloc_df <- read.csv(here("data/measuresloc.csv"))
+var_choices <- names(measuresloc_df)[c(5:35)]
+year_choices <- c(2008:2017)
 
-    # Application title
-    titlePanel("Maternity Data for New York"),
-
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            tabsetPanel(type = "tabs", 
-                        tabPanel("Leaflet", leafletOutput("leaflet")), 
-                        tabPanel("Line", plotlyOutput("line")), 
-                        tabPanel("Scatter1", plotlyOutput("scatter1")), 
-                        tabPanel("Scatter2", plotlyOutput("scatter2")))
-        )
-    )
+shinyUI(navbarPage("Maternity Data for New York", 
+                   tabPanel("Leaflet", 
+                            sidebarPanel(
+                              selectInput("var",
+                                          label = "Select a variable",
+                                          choices = var_choices)), 
+                            mainPanel()
+                            ), 
+                   tabPanel("Line", 
+                            sidebarPanel(
+                              selectInput("var",
+                                          label = "Select a variable",
+                                          choices = var_choices), 
+                              selectInput("county", 
+                                          label = "Select a county", 
+                                          choices = measuresloc_df$Hospital.County)), 
+                            mainPanel()
+                            ), 
+                   tabPanel("Scatter1", 
+                            sidebarPanel(selectInput("var",
+                                                     label = "Select a variable",
+                                                     choices = var_choices), 
+                                         selectInput("xyear", 
+                                                     label = "Select a year for the x-axis", 
+                                                     choices = year_choices), 
+                                         selectInput("yyear", 
+                                                     label = "Select a year for the y-axis", 
+                                                     choices = year_choices)), 
+                            mainPanel()
+                            ), 
+                   tabPanel("Scatter2", 
+                            sidebarPanel(selectInput("var",
+                                                     label = "Select a year",
+                                                     choices = year_choices), 
+                                         selectInput("xvar", 
+                                                     label = "Select a variable for the x-axis", 
+                                                     choices = var_choices), 
+                                         selectInput("yvar", 
+                                                     label = "Select a variable for the y-axis", 
+                                                     choices = var_choices)), 
+                            mainPanel()
+                   )
 ))
 
-
-# shinyUI(navbarPage("App Title",
-#                    tabPanel("Tab Name",
-#                             sidebarPanel([inputs for the first tab]),
-#                             mainPanel([outputs for the first tab])
-#                    ),
-#                    tabPanel("Second tab name",
-#                             sidebarPanel([inputs for the second tab]),
-#                             mailPanel([outputs for the second tab])
-#                   )
-#))
+# leafletOutput("leaflet")
+# plotlyOutput("line")
+# plotlyOutput("scatter1")
+# plotlyOutput("scatter2")
