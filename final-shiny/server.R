@@ -23,15 +23,27 @@ shinyServer(function(input, output) {
         leaflet(measuresloc_leafletyear()) %>% 
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
-            addAwesomeMarkers(lng = measuresloc_leafletyear()[[lon]], lat = measuresloc_leafletyear()[[lat]], 
-                              popup = paste0(measuresloc_leafletyear()[[Hospital.Name]], ", ", measuresloc_year[2]), 
-                              icon = awesome)
+            addAwesomeMarkers(lng = measuresloc_leafletyear()[[4]], lat = measuresloc_leafletyear()[[3]], 
+                       popup = paste0(measuresloc_leafletyear()[[5]], ", ", measuresloc_leafletyear()[[1]]), 
+                       icon = awesome
+    ))
+    
+    output$table <- renderDataTable(
+        measuresloc_leafletyear()
     )
     
-    output$line <- renderPlotly(
-        g <- ggplot(data = measuresloc_vdf, aes(x = Year, y = input$linevar, group = Hospital.Name)) + 
-            geom_line(aes(label = Hospital.Name)), 
-        return(ggplotly(g, tooltip = "label"))
+    output$lineleaflet <- renderLeaflet(
+        leaflet(measuresloc_df) %>% 
+            addTiles() %>% 
+            addProviderTiles(providers$Wikimedia) %>% 
+            addAwesomeMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
+                              popup = paste0(measuresloc_df$Hospital.Name), 
+                              icon = awesome
+            ))
+    
+    output$line <- renderPlot(
+        ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
+            geom_line()
     )
 
 })

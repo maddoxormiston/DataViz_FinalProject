@@ -29,9 +29,8 @@ measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008) %>%
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 
   addProviderTiles(providers$Wikimedia) %>% 
-  addAwesomeMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
-             popup = paste0(measuresloc_2008$Hospital.Name, ", ", measuresloc_2008$Episiotomy), 
-             icon = awesome)
+  addMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
+             popup = paste0(measuresloc_2008$Hospital.Name, ", ", measuresloc_2008$Episiotomy))
 ```
 
 ```{r}
@@ -40,8 +39,8 @@ library(plotly)
 ## line plot:
 measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
 
-g <- ggplot(data = measuresloc_var, aes(x = Year, y = Episiotomy, group = Hospital.Name)) + 
-  geom_line(aes(label = Hospital.Name))
+ggplot(data = measuresloc_var, aes(x = Year, y = Episiotomy, group = Hospital.Name)) + 
+  geom_line()
 
 ggplotly(g, tooltip = "label")
 ```

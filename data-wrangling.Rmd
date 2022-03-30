@@ -33,7 +33,7 @@ write.csv(hospitalnames_df, "hospitalnames.csv")
 
 ```{r}
 library(leaflet)
-hospitalgeocode_df <- read.csv("data/hospitalsgeocode.csv")
+hospitalgeocode_df <- read.csv("data/hospitalsgeocode.csv", strip.white = TRUE)
 
 hospitalgeocode_df <- hospitalgeocode_df %>% separate(Place, into = c("Hospital", "State"), sep = ",")
 

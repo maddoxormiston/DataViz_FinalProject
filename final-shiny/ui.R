@@ -1,5 +1,6 @@
 library(shiny)
 library(here)
+library(leaflet)
 
 measuresloc_df <- read.csv(here("data/measuresloc.csv"))
 var_choices <- names(measuresloc_df)[c(5:35)]
@@ -14,7 +15,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                               selectInput("leafletyear",
                                          label = "Select a year",
                                          choices = year_choices)), 
-                            mainPanel(leafletOutput("leaflet"))
+                            mainPanel(leafletOutput("leaflet"), dataTableOutput("table"))
                             ), 
                    tabPanel("Line", 
                             sidebarPanel(
@@ -24,7 +25,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                               selectInput("linecounty", 
                                           label = "Select a county", 
                                           choices = measuresloc_df$Hospital.County)), 
-                            mainPanel(plotlyOutput("line"))
+                            mainPanel(leafletOutput("lineleaflet"), plotOutput("line"))
                             ), 
                    tabPanel("Scatter1", 
                             sidebarPanel(selectInput("var1",
@@ -53,6 +54,6 @@ shinyUI(navbarPage("Maternity Data for New York",
 ))
 
 # leafletOutput("leaflet")
-# plotlyOutput("line")
+# plotOutput("line")
 # plotlyOutput("scatter1")
 # plotlyOutput("scatter2")

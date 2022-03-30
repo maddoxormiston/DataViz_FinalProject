@@ -21,3 +21,7 @@ Created a static line plot for the second tab, finished ui side of shiny app and
 ## March 30 Beginning of Class
 
 Began creating outputs on the server side of the app. Got stuck for a while figuring out how to reference variables in my reactive data set for the Leaflet tab. Started working on the line plot tab as well.
+
+## March 30 End of Class
+
+Figured out how to display both leaflet and line plot tabs. Working to create a reactive line plot to display a hospital in a different color when its marker is clicked on in Leaflet.

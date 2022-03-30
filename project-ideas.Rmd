@@ -18,3 +18,6 @@ scatterplot: options: compare one variable over different years, compare multipl
 - first option: choose variable, choose year for x- and y-axis
 - second option: choose year, choose variable for x- and y-axis
 add an option to aggregate over all years?
+
+https://stackoverflow.com/questions/57446415/table-on-click-in-r-shiny-leaflet-is-not-shown
+https://stackoverflow.com/questions/48940424/how-to-connect-leaflet-map-clicks-events-with-plot-creation-in-a-shiny-app
