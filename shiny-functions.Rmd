@@ -23,7 +23,8 @@ awesome <- makeAwesomeIcon(
 )
 
 ## this will be used to create a reactive data set in the shiny app
-measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008)
+measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008) %>% 
+  select("Episiotomy", Year, lat, lon, Hospital.Name)
 
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 

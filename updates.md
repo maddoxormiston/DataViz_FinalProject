@@ -17,3 +17,7 @@ Worked on creating a leaflet visualization that changes based on which variable 
 ## March 28 End of Class
 
 Created a static line plot for the second tab, finished ui side of shiny app and began working on server side, made sure state data was not in full data set.
+
+## March 30 Beginning of Class
+
+Began creating outputs on the server side of the app. Got stuck for a while figuring out how to reference variables in my reactive data set for the Leaflet tab. Started working on the line plot tab as well.
