@@ -1,6 +1,7 @@
 library(shiny)
 library(here)
 library(leaflet)
+library(plotly)
 
 measuresloc_df <- read.csv(here("data/measuresloc.csv"))
 var_choices <- names(measuresloc_df)[c(5:35)]
@@ -14,7 +15,8 @@ shinyUI(navbarPage("Maternity Data for New York",
                                           choices = var_choices), 
                               selectInput("leafletyear",
                                          label = "Select a year",
-                                         choices = year_choices)), 
+                                         choices = year_choices), 
+                              submitButton("Update Selections")), 
                             mainPanel(leafletOutput("leaflet"), dataTableOutput("table"))
                             ), 
                    tabPanel("Line", 
@@ -24,8 +26,9 @@ shinyUI(navbarPage("Maternity Data for New York",
                                           choices = var_choices), 
                               selectInput("linecounty", 
                                           label = "Select a county", 
-                                          choices = measuresloc_df$Hospital.County)), 
-                            mainPanel(leafletOutput("lineleaflet"), plotOutput("line"))
+                                          choices = measuresloc_df$Hospital.County), 
+                              submitButton("Update Selections")), 
+                            mainPanel(plotOutput("line"))
                             ), 
                    tabPanel("Scatter1", 
                             sidebarPanel(selectInput("var1",
@@ -37,7 +40,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                                          selectInput("yyear1", 
                                                      label = "Select a year for the y-axis", 
                                                      choices = year_choices)), 
-                            mainPanel()
+                            mainPanel(plotlyOutput("scatter1"))
                             ), 
                    tabPanel("Scatter2", 
                             sidebarPanel(selectInput("year2",
@@ -49,7 +52,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                                          selectInput("yvar2", 
                                                      label = "Select a variable for the y-axis", 
                                                      choices = var_choices)), 
-                            mainPanel()
+                            mainPanel(plotlyOutput("scatter2"))
                    )
 ))
 

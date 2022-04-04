@@ -25,3 +25,7 @@ Began creating outputs on the server side of the app. Got stuck for a while figu
 ## March 30 End of Class
 
 Figured out how to display both leaflet and line plot tabs. Working to create a reactive line plot to display a hospital in a different color when its marker is clicked on in Leaflet.
+
+## April 4 Beginning of Class
+
+Tried to make line plot reactive to an additional Leaflet on line plot tab, got very stuck and ended up just allowing user to filter by county. added plots to both scatterplot tabs, have problems with first tab that need to be worked through. Added submit button to first tab.
