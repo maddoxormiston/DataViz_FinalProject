@@ -28,4 +28,8 @@ Figured out how to display both leaflet and line plot tabs. Working to create a 
 
 ## April 4 Beginning of Class
 
-Tried to make line plot reactive to an additional Leaflet on line plot tab, got very stuck and ended up just allowing user to filter by county. added plots to both scatterplot tabs, have problems with first tab that need to be worked through. Added submit button to first tab.
+Tried to make line plot reactive to an additional Leaflet on line plot tab, got very stuck and ended up just allowing user to filter by county. Added plots to both scatterplot tabs, have problems with first scatterplot tab that need to be worked through. Added submit button to first tab.
+
+## April 4 End of Class
+
+Got second scatterplot tab to be working fine. Ran into issue where lon/lat coordinates for many hospitals were the same when they shouldn't be so fixed those by hand. Figured out (with Emil's help) why plotly version of second scatterplot wasn't working. Added leaflet with hospital names to line plot tab to continue working on reactive line plot. Need to continue on line plot tab and figure out why first scatterplot tab isn't working.

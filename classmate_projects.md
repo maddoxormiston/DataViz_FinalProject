@@ -13,3 +13,7 @@ Caleb is using PGA tour data to show different stats in shiny tabs. He has creat
 ## March 30
 
 Tom is creating a package that uses country-level Covid data to display peaks in an interactive map that is colored based on cases.
+
+## April 4
+
+Emil is making a shiny app that allows the user to select a hockey stat and a play setting to see reactive plots. He has three different tabs and is working on adding icons to his tabs and logos for the teams displayed.

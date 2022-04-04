@@ -28,7 +28,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                                           label = "Select a county", 
                                           choices = measuresloc_df$Hospital.County), 
                               submitButton("Update Selections")), 
-                            mainPanel(plotOutput("line"))
+                            mainPanel(plotOutput("line"), leafletOutput("lineleaflet"))
                             ), 
                    tabPanel("Scatter1", 
                             sidebarPanel(selectInput("var1",
@@ -39,7 +39,8 @@ shinyUI(navbarPage("Maternity Data for New York",
                                                      choices = year_choices), 
                                          selectInput("yyear1", 
                                                      label = "Select a year for the y-axis", 
-                                                     choices = year_choices)), 
+                                                     choices = year_choices), 
+                                         submitButton("Update Selections")), 
                             mainPanel(plotlyOutput("scatter1"))
                             ), 
                    tabPanel("Scatter2", 
@@ -51,7 +52,8 @@ shinyUI(navbarPage("Maternity Data for New York",
                                                      choices = var_choices), 
                                          selectInput("yvar2", 
                                                      label = "Select a variable for the y-axis", 
-                                                     choices = var_choices)), 
+                                                     choices = var_choices), 
+                                         submitButton("Update Selections")), 
                             mainPanel(plotlyOutput("scatter2"))
                    )
 ))

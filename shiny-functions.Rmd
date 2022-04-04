@@ -47,8 +47,10 @@ library(plotly)
 ## line plot:
 measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
 
+line_hospital <- measuresloc_var %>% filter(Hospital.Name == "Adirondack Medical Center-Saranac Lake Site")
+
 ggplot(data = measuresloc_var, aes(x = Year, y = Episiotomy, group = Hospital.Name)) + 
-  geom_line()
+  geom_line() + geom_line(data = line_hospital, aes(x = Year, y = Episiotomy), colour = "red")
 
 ggplotly(g, tooltip = "label")
 ```

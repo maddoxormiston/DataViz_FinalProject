@@ -1,7 +1,7 @@
 "","ID","Place","lon","lat"
 "1",1,"Adirondack Medical Center-Saranac Lake Site, NY",-74.1312867,44.3294896
 "2",2,"Albany Medical Center Hospital, NY",-73.7771411,42.6536483
-"3",3,"Alice Hyde Medical Center, NY",-74.0059728,40.7127753
+"3",3,"Alice Hyde Medical Center, NY",-74.2999876,44.8554151
 "4",4,"Arnot Ogden Medical Center, NY",-76.8268806,42.1009135
 "5",5,"Auburn Memorial Hospital, NY",-76.5660529,42.9317335
 "6",6,"Aurelia Osborn Fox Memorial Hospital, NY",-75.0522916,42.4578897
@@ -10,7 +10,7 @@
 "9",9,"Beth Israel Medical Center/Petrie Campus, NY",-73.9825649,40.7333501
 "10",10,"Bon Secours Community Hospital, NY",-74.6818346,41.3676682
 "11",11,"Bronx-Lebanon Hospital Center - Concourse Division, NY",-73.9110165,40.8434469
-"12",12,"Brookdale Hospital Medical Center, NY",-74.0059728,40.7127753
+"12",12,"Brookdale Hospital Medical Center, NY",-73.9145464,40.6549753
 "13",13,"Brookhaven Memorial Hospital Medical Center Inc, NY",-72.9758017,40.7804971
 "14",14,"Brooklyn Hospital Center - Downtown Campus, NY",-73.9780268,40.6909388
 "15",15,"Brooks Memorial Hospital, NY",-79.334641,42.4799884
@@ -19,10 +19,10 @@
 "18",18,"Catskill Regional Medical Center, NY",-74.7372731,41.7093868
 "19",19,"Cayuga Medical Center at Ithaca, NY",-76.5380862,42.4688745
 "20",20,"Champlain Valley Physicians Hospital Medical Center, NY",-73.470012,44.7014924
-"21",21,"Chenango Memorial Hospital Inc, NY",-74.0059728,40.7127753
+"21",21,"Chenango Memorial Hospital Inc, NY",-75.5278844,42.5411751
 "22",22,"Claxton-Hepburn Medical Center, NY",-75.4995175,44.6912242
-"23",23,"Columbia Memorial Hospital, NY",-74.2179326,43.2994285
-"24",24,"Community Memorial Hospital Inc, NY",-74.0059728,40.7127753
+"23",23,"Columbia Memorial Hospital, NY",-73.7796082,42.2463701
+"24",24,"Community Memorial Hospital Inc, NY",-75.5457427,42.8126129
 "25",25,"Community-General Hospital of Greater Syracuse, NY",-76.1474244,43.0481221
 "26",26,"Coney Island Hospital, NY",-73.9648753,40.5855566
 "27",27,"Corning Hospital, NY",-77.0546903,42.1428521
@@ -72,19 +72,19 @@
 "71",71,"Mount St Marys Hospital and Health Center, NY",-79.0330756,43.1537841
 "72",72,"Nassau University Medical Center, NY",-73.5540616,40.7272159
 "73",73,"Nathan Littauer Hospital, NY",-74.3319185,43.0715875
-"74",74,"New York Downtown Hospital, NY",-74.005103,40.71039
+"74",74,"New York Downtown Hospital, NY",-74.0072917,40.710394
 "75",75,"New York Hospital Medical Center   of Queens, NY",-73.8254109,40.7454597
 "76",76,"New York Methodist Hospital, NY",-73.9791299,40.6678362
-"77",77,"New York Presbyterian Hospital - Allen Pavilion, NY",-74.2179326,43.2994285
-"78",78,"New York Presbyterian Hospital - Columbia Presbyterian Center, NY",-74.0059728,40.7127753
+"77",77,"New York Presbyterian Hospital - Allen Pavilion, NY",-73.9148792,40.8730577
+"78",78,"New York Presbyterian Hospital - Columbia Presbyterian Center, NY",-73.9441736,40.8417607
 "79",79,"New York Presbyterian Hospital - New York Weill Cornell Center, NY",-73.9542869,40.7643076
 "80",80,"Newark-Wayne Community Hospital, NY",-77.1020907,43.0605912
 "81",81,"Niagara Falls Memorial Medical Center, NY",-79.0495359,43.0934707
-"82",82,"Nicholas H Noyes Memorial Hospital, NY",-74.2179326,43.2994285
+"82",82,"Nicholas H Noyes Memorial Hospital, NY",-77.699907,42.5528296
 "83",83,"North Central Bronx Hospital, NY",-73.8810825,40.8805787
 "84",84,"North Shore University Hospital, NY",-73.7012035,40.7754975
 "85",85,"Northern Dutchess Hospital, NY",-73.9128078,41.9356016
-"86",86,"Northern Westchester Hospital, NY",-74.2179326,43.2994285
+"86",86,"Northern Westchester Hospital, NY",-74.0056055,41.196535
 "87",87,"Nyack Hospital, NY",-73.9260511,41.0958962
 "88",88,"NYU Hospitals Center, NY",-73.9815497,40.7459158
 "89",89,"Olean General Hospital, NY",-78.4277827,42.0902702
@@ -101,7 +101,7 @@
 "100",100,"Rest of State - All Hospitals, NY",-74.0059728,40.7127753
 "101",101,"Richmond University Medical Center, NY",-74.1059933,40.6357678
 "102",102,"Rochester General Hospital, NY",-77.5878398,43.1924948
-"103",103,"Rome Memorial Hospital, Inc, NY",-74.0059728,40.7127753
+"103",103,"Rome Memorial Hospital, Inc, NY",-75.4449798,43.2291895
 "104",104,"Samaritan Hospital, NY",-73.6720969,42.7336275
 "105",105,"Samaritan Medical Center, NY",-75.9144928,43.9648367
 "106",106,"Saratoga Hospital, NY",-73.7976256,43.0862373
@@ -118,9 +118,9 @@
 "117",117,"St Catherine of Siena Hospital, NY",-73.2231986,40.8683584
 "118",118,"St Charles Hospital, NY",-73.0609201,40.9466502
 "119",119,"St Clares Hospital, NY",-73.9893502,40.7647028
-"120",120,"St James Mercy Hospital, NY",-74.2179326,43.2994285
-"121",121,"St Johns Episcopal Hospital So Shore, NY",-74.0059728,40.7127753
-"122",122,"St Josephs Hospital Health Center, NY",-74.2179326,43.2994285
+"120",120,"St James Mercy Hospital, NY",-75.9687902,41.1790804
+"121",121,"St Johns Episcopal Hospital So Shore, NY",-73.7548578,40.5986319
+"122",122,"St Josephs Hospital Health Center, NY",-75.9689088,41.1438275
 "123",123,"St Luke's Cornwall Hospital/Newburgh, NY",-74.0149005,41.5037064
 "124",124,"St Lukes Roosevelt Hospital Center - Roosevelt Hospital Division, NY",-73.961459,40.8054014
 "125",125,"St Marys Hospital at Amsterdam, NY",-74.186919,42.9590091
@@ -132,15 +132,15 @@
 "131",131,"SVCMC-St Vincents Manhattan, NY",-74.0010379,40.7375843
 "132",132,"The Unity Hospital of Rochester, NY",-77.7052192,43.1925238
 "133",133,"United Health Services Hospitals Inc. - Wilson Medical Center, NY",-75.9583893,42.1142391
-"134",134,"United Memorial Medical Center North Street Campus, NY",-74.0059728,40.7127753
-"135",135,"University Hospital, NY",-74.0059728,40.7127753
+"134",134,"United Memorial Medical Center North Street Campus, NY",-78.1787505,43.0054757
+"135",135,"University Hospital, NY",-74.4802507,40.6794061
 "136",136,"University Hospital of Brooklyn, NY",-73.9453265,40.6549969
 "137",137,"Vassar Brothers Medical Center, NY",-73.935626,41.6933485
 "138",138,"Westchester Medical Center, NY",-73.80582,41.08878
 "139",139,"Westfield Memorial Hospital Inc, NY",-79.569879,42.3287322
 "140",140,"White Plains Hospital Center, NY",-73.768986,41.0260327
 "141",141,"Winthrop-University Hospital, NY",-73.643129,40.7407591
-"142",142,"Woman's Christian Association, NY",-74.0059728,40.7127753
+"142",142,"Woman's Christian Association, NY",-79.2336184,42.0915449
 "143",143,"Women And Children's Hospital Of Buffalo, NY",-78.8751475,42.9098851
 "144",144,"Woodhull Medical & Mental Health Center, NY",-73.9430003,40.6994152
 "145",145,"Wyckoff Heights Medical Center, NY",-73.9174728,40.7042422
