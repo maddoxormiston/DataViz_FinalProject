@@ -34,17 +34,19 @@ shinyServer(function(input, output) {
         measuresloc_df %>% select(Year, Hospital.Name, input$var1)
     })
     
-    xvar <- reactive({
-        measuresloc_var %>% filter(Year == input$xyear1) %>% rename(xvar = measuresloc_var()[[3]])
-    })
-    
-    yvar <- reactive({
-        measuresloc_var %>% filter(Year == input$yyear1) %>% rename(yvar = measuresloc_var()[[3]])
-    })
-    
     both_df <- reactive({
-        full_join(xvar(), yvar(), by = "Hospital.Name")
+        xvar <- measuresloc_var %>% filter(Year == as.numeric(input$xyear1))
+        yvar <- measuresloc_var %>% filter(Year == as.numeric(input$yyear1))
+        full_join(xvar(), yvar(), by = c("Hospital.Name" = "Hospital.Name"))
     })
+    
+    #yvar <- reactive({
+    #    measuresloc_var %>% filter(Year == as.numeric(input$yyear1))
+    #})
+    
+    #both_df <- reactive({
+    #    full_join(xvar(), yvar(), by = c("Hospital.Name" = "Hospital.Name"))
+    #})
     
     measuresloc_year2 <- reactive({
         measuresloc_df %>% filter(Year == input$year2)
@@ -78,8 +80,19 @@ shinyServer(function(input, output) {
                               icon = awesome)
     )
     
+    output$temp <- renderPrint({
+        input$map_marker_click$lng
+    })
+    
+    output$tim <- renderPlot({
+        temp <- measuresloc_df %>% filter(lon == input$map_marker_click$lng)
+        print(ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
+                  geom_line() + 
+                  geom_line(data = temp, aes(x = Year, y = .data[[input$linevar]]), colour = "red"))
+    })
+    
     output$scatter1 <- renderPlotly({
-        g1 <- ggplot(data = both_df(), aes(x = xvar, y = yvar)) + 
+        g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 
             geom_point(aes(label = Hospital.Name)) + 
             geom_smooth()
         

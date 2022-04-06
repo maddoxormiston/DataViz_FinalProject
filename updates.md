@@ -33,3 +33,7 @@ Tried to make line plot reactive to an additional Leaflet on line plot tab, got 
 ## April 4 End of Class
 
 Got second scatterplot tab to be working fine. Ran into issue where lon/lat coordinates for many hospitals were the same when they shouldn't be so fixed those by hand. Figured out (with Emil's help) why plotly version of second scatterplot wasn't working. Added leaflet with hospital names to line plot tab to continue working on reactive line plot. Need to continue on line plot tab and figure out why first scatterplot tab isn't working.
+
+## April 6 Beginning of Class
+
+Worked on figuring out error for first scatterplot ("Error in UseMethod: no applicable method for 'filter' applied to an object of class "c('reactiveExpr', 'reactive', 'function')""). Tried many ways to fix but haven't figured it out yet. Tried to make reactive lineplot from leaflet click, have some more errors to work out on that.

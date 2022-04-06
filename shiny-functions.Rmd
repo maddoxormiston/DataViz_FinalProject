@@ -59,9 +59,9 @@ ggplotly(g, tooltip = "label")
 ## first scatterplot:
 measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
 
-xvar <- measuresloc_var %>% filter(Year == 2008) %>% rename(xvar = Episiotomy)
+xvar <- measuresloc_var %>% filter(Year == 2008)
 
-yvar <- measuresloc_var %>% filter(Year == 2011) %>% rename(yvar = Episiotomy)
+yvar <- measuresloc_var %>% filter(Year == 2011)
 
 both_df <- full_join(xvar, yvar, by = "Hospital.Name")
 

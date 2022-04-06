@@ -28,7 +28,7 @@ shinyUI(navbarPage("Maternity Data for New York",
                                           label = "Select a county", 
                                           choices = measuresloc_df$Hospital.County), 
                               submitButton("Update Selections")), 
-                            mainPanel(plotOutput("line"), leafletOutput("lineleaflet"))
+                            mainPanel(plotOutput("tim"), leafletOutput("lineleaflet"), textOutput("temp"))
                             ), 
                    tabPanel("Scatter1", 
                             sidebarPanel(selectInput("var1",
