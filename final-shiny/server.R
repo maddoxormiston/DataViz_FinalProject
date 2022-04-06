@@ -34,19 +34,17 @@ shinyServer(function(input, output) {
         measuresloc_df %>% select(Year, Hospital.Name, input$var1)
     })
     
-    both_df <- reactive({
-        xvar <- measuresloc_var %>% filter(Year == as.numeric(input$xyear1))
-        yvar <- measuresloc_var %>% filter(Year == as.numeric(input$yyear1))
-        full_join(xvar(), yvar(), by = c("Hospital.Name" = "Hospital.Name"))
+    xvar <- reactive({
+        measuresloc_var() %>% filter(Year == input$xyear1)
     })
     
-    #yvar <- reactive({
-    #    measuresloc_var %>% filter(Year == as.numeric(input$yyear1))
-    #})
+    yvar <- reactive({
+        measuresloc_var() %>% filter(Year == input$yyear1)
+    })
     
-    #both_df <- reactive({
-    #    full_join(xvar(), yvar(), by = c("Hospital.Name" = "Hospital.Name"))
-    #})
+    both_df <- reactive({
+        full_join(xvar(), yvar(), by = c("Hospital.Name" = "Hospital.Name"))
+    })
     
     measuresloc_year2 <- reactive({
         measuresloc_df %>% filter(Year == input$year2)
@@ -80,23 +78,27 @@ shinyServer(function(input, output) {
                               icon = awesome)
     )
     
-    output$temp <- renderPrint({
-        input$map_marker_click$lng
+    #output$temp <- renderPrint({
+    #    input$map_marker_click$lng
+    #})
+    
+    temp <- reactive({
+        measuresloc_df %>% filter(lon == -73.77714)
     })
     
-    output$tim <- renderPlot({
-        temp <- measuresloc_df %>% filter(lon == input$map_marker_click$lng)
-        print(ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
-                  geom_line() + 
-                  geom_line(data = temp, aes(x = Year, y = .data[[input$linevar]]), colour = "red"))
-    })
+    output$tim <- renderPlot(
+        ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
+                  geom_line()# + 
+                  #geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+    )
     
     output$scatter1 <- renderPlotly({
         g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 
-            geom_point(aes(label = Hospital.Name)) + 
-            geom_smooth()
+            geom_point(aes(text = Hospital.Name)) + 
+            geom_smooth(se = F) + 
+            labs(x = input$xyear1, y = input$yyear1)
         
-        ggplotly(g1, tooltip = "label")
+        ggplotly(g1, tooltip = "text")
     })
     
     output$scatter2 <- renderPlotly({

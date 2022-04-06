@@ -37,3 +37,7 @@ Got second scatterplot tab to be working fine. Ran into issue where lon/lat coor
 ## April 6 Beginning of Class
 
 Worked on figuring out error for first scatterplot ("Error in UseMethod: no applicable method for 'filter' applied to an object of class "c('reactiveExpr', 'reactive', 'function')""). Tried many ways to fix but haven't figured it out yet. Tried to make reactive lineplot from leaflet click, have some more errors to work out on that.
+
+## April 6 End of Class
+
+Figured out error on first scatterplot, working through reactive line plot. Stuck where variable does not change based on input, no red line shows when using singular observation, and no data stored in `map_marker_click`. Also need to fix a few hospitals that have incorrect lat/lon.

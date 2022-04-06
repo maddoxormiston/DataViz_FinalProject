@@ -17,3 +17,7 @@ Tom is creating a package that uses country-level Covid data to display peaks in
 ## April 4
 
 Emil is making a shiny app that allows the user to select a hockey stat and a play setting to see reactive plots. He has three different tabs and is working on adding icons to his tabs and logos for the teams displayed.
+
+## April 6
+
+Clara is making a shiny app that has multiple tabs showing brewery data that allows the user to compare ABV, IBU, and the types of beer that the brewery has. She is working on adjusting her Leaflets to just have markers and possibly is adding another data set with ratings for the breweries. Shane is using soccer data to create a shiny app to display a player's stats compared with league and team averages.
