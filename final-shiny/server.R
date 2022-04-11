@@ -70,26 +70,26 @@ shinyServer(function(input, output) {
     )
     
     output$lineleaflet <- renderLeaflet(
-        leaflet(hospitalsgeocode_df) %>% 
+        leaflet(measuresloc_df) %>% 
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
-            addAwesomeMarkers(lng = hospitalsgeocode_df$lon, lat = hospitalsgeocode_df$lat, 
-                              popup = paste0(hospitalsgeocode_df$Place), 
+            addAwesomeMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
+                              popup = paste0(measuresloc_df$Hospital.Name), 
                               icon = awesome)
     )
     
-    #output$temp <- renderPrint({
-    #    input$map_marker_click$lng
-    #})
-    
     temp <- reactive({
-        measuresloc_df %>% filter(lon == -73.77714)
+        measuresloc_df %>% filter(lon == input$lineleaflet_marker_click$lng)
     })
+    
+    output$lon <- renderPrint(
+        input$lineleaflet_marker_click$lng
+    )
     
     output$tim <- renderPlot(
         ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
-                  geom_line()# + 
-                  #geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+                  geom_line() + 
+                  geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
     )
     
     output$scatter1 <- renderPlotly({

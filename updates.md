@@ -41,3 +41,7 @@ Worked on figuring out error for first scatterplot ("Error in UseMethod: no appl
 ## April 6 End of Class
 
 Figured out error on first scatterplot, working through reactive line plot. Stuck where variable does not change based on input, no red line shows when using singular observation, and no data stored in `map_marker_click`. Also need to fix a few hospitals that have incorrect lat/lon.
+
+## April 11 Beginning of Class
+
+Figured out map marker click tab! Fixed incorrect lat/lon values for some hospitals in hospitalsgeocode.csv. Line plot tab only works with submit button so need to fix that. 
