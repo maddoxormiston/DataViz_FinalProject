@@ -16,9 +16,13 @@ measuresloc_df <- measuresloc_df %>% filter(Hospital.County != "Rest of State")
 
 write.csv(measuresloc_df, "measuresloc.csv")
 
+measuresloc_df <- read.csv("data/measuresloc.csv")
+
 library(leaflet)
 awesome <- makeAwesomeIcon(
-  icon = "ios-clos",
+  icon = makeIcon(iconUrl = "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
+                  iconWidth = 36, 
+                  iconHeight = 36),
   iconColor = "black",
   markerColor = "blue",
   library = "ion"
@@ -31,14 +35,16 @@ measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008) %>%
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 
   addProviderTiles(providers$Wikimedia) %>% 
-  addMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
-             popup = paste0(measuresloc_2008$Hospital.Name, ", ", measuresloc_2008$Episiotomy))
+  addAwesomeMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
+             popup = paste(measuresloc_2008$Hospital.Name, "<br/>", 
+                           measuresloc_2008$Episiotomy), 
+                    icon = awesome)
 
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 
   addProviderTiles(providers$Wikimedia) %>% 
   addAwesomeMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
-                    popup = paste0(measuresloc_df$Hospital.Name), 
+                    popup = paste(measuresloc_df$Hospital.Name), 
                     icon = awesome, 
                     layerId = measuresloc_df$id)
 ```

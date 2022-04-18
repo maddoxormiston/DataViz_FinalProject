@@ -16,8 +16,7 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                           choices = var_choices), 
                               selectInput("leafletyear",
                                          label = "Select a year",
-                                         choices = year_choices), 
-                              submitButton("Update Selections")), 
+                                         choices = year_choices)), 
                             mainPanel(leafletOutput("leaflet"), dataTableOutput("table"))
                             ), 
                    tabPanel("Line", 
@@ -25,9 +24,7 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                               selectInput("linevar",
                                           label = "Select a variable",
                                           choices = var_choices), 
-                              p("Select a hospital on the map to view on the line plot, 
-                                then press 'update selections' when ready."), 
-                              submitButton("Update Selections")), 
+                              p("Select a hospital on the map to view on the line plot.")), 
                             mainPanel(plotOutput("tim"), leafletOutput("lineleaflet"))
                             ), 
                    tabPanel("Scatter1", 
@@ -39,8 +36,7 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                                      choices = year_choices), 
                                          selectInput("yyear1", 
                                                      label = "Select a year for the y-axis", 
-                                                     choices = year_choices), 
-                                         submitButton("Update Selections")), 
+                                                     choices = year_choices)), 
                             mainPanel(plotlyOutput("scatter1"))
                             ), 
                    tabPanel("Scatter2", 
@@ -52,13 +48,7 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                                      choices = var_choices), 
                                          selectInput("yvar2", 
                                                      label = "Select a variable for the y-axis", 
-                                                     choices = var_choices), 
-                                         submitButton("Update Selections")), 
+                                                     choices = var_choices)), 
                             mainPanel(plotlyOutput("scatter2"))
                    )
 ))
-
-# leafletOutput("leaflet")
-# plotOutput("line")
-# plotlyOutput("scatter1")
-# plotlyOutput("scatter2")

@@ -53,5 +53,5 @@ leaflet(hospitalgeocode_df) %>%
 ```
 
 ```{r}
-
+measuresloc_test <- read.csv("data/measuresloc.csv", check.names = FALSE)
 ```

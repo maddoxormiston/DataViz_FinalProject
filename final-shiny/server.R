@@ -54,8 +54,10 @@ shinyServer(function(input, output) {
         leaflet(measuresloc_leafletyear()) %>% 
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
-            addAwesomeMarkers(lng = measuresloc_leafletyear()[[4]], lat = measuresloc_leafletyear()[[3]], 
-                       popup = paste0(measuresloc_leafletyear()[[5]], ", ", input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
+            addAwesomeMarkers(lng = measuresloc_leafletyear()[[4]], 
+                              lat = measuresloc_leafletyear()[[3]], 
+                       popup = paste(measuresloc_leafletyear()[[5]], "<br/>", 
+                                      input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
                        icon = awesome)
     )
     
@@ -104,7 +106,8 @@ shinyServer(function(input, output) {
     })
     
     output$scatter2 <- renderPlotly({
-        plot1 <- ggplot(data = measuresloc_year2(), aes(x = .data[[input$xvar2]], y = .data[[input$yvar2]])) + 
+        plot1 <- ggplot(data = measuresloc_year2(), aes(x = .data[[input$xvar2]], 
+                                                        y = .data[[input$yvar2]])) + 
             geom_point(aes(text = Hospital.Name), alpha = 0.4) + geom_smooth(se = F)
         
         ggplotly(plot1, tooltip = "text")

@@ -21,3 +21,7 @@ Emil is making a shiny app that allows the user to select a hockey stat and a pl
 ## April 6
 
 Clara is making a shiny app that has multiple tabs showing brewery data that allows the user to compare ABV, IBU, and the types of beer that the brewery has. She is working on adjusting her Leaflets to just have markers and possibly is adding another data set with ratings for the breweries. Shane is using soccer data to create a shiny app to display a player's stats compared with league and team averages.
+
+## April 18
+
+Claire made a shiny app that displays a NHL team's stats throughout different seasons and has separate lines on the scatterplot for before and after Vegas odds, as well as a data table output that summarizes the stats. She is working on cleaning up the app and making it more presentable.

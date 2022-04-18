@@ -47,4 +47,9 @@ Figured out error on first scatterplot, working through reactive line plot. Stuc
 Figured out map marker click tab! Fixed incorrect lat/lon values for some hospitals in hospitalsgeocode.csv. Line plot tab only works with submit button so need to fix that. 
 
 ## April 18 Beginning of Class
-Worked on some theme/visualization parts of the app. Having a difficult time figuring out how to make first and third tabs work without submit button on either tab, also want to change icon markers in leaflets.
+
+Worked on some theme/visualization parts of the app. Having a difficult time figuring out how to make first and second tabs work without submit button on either tab, also want to change icon markers in leaflets.
+
+## April 18 End of Class
+
+Figured out app without submit button, working on creating custom icons for the leaflets. Also want to have a line plot show up on line tab before user selects a hospital - need either base line plot or line plot with hospital already selected.
