@@ -55,7 +55,7 @@ shinyServer(function(input, output) {
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
             addAwesomeMarkers(lng = measuresloc_leafletyear()[[4]], lat = measuresloc_leafletyear()[[3]], 
-                       popup = paste0(measuresloc_leafletyear()[[5]], ", ", measuresloc_leafletyear()[[1]]), 
+                       popup = paste0(measuresloc_leafletyear()[[5]], ", ", input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
                        icon = awesome)
     )
     
@@ -64,7 +64,8 @@ shinyServer(function(input, output) {
     )
     
     output$line <- renderPlot(
-        ggplot(data = measuresloc_linecounty(), aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
+        ggplot(data = measuresloc_linecounty(), aes(x = Year, y = .data[[input$linevar]], 
+                                                    group = Hospital.Name)) + 
             geom_line() + 
             geom_label_repel(aes(label = Hospital.Name))
     )
@@ -87,14 +88,15 @@ shinyServer(function(input, output) {
     )
     
     output$tim <- renderPlot(
-        ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], group = Hospital.Name)) + 
-                  geom_line() + 
+        ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                          group = Hospital.Name)) + 
+                  geom_line(alpha = 0.4) + 
                   geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
     )
     
     output$scatter1 <- renderPlotly({
         g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 
-            geom_point(aes(text = Hospital.Name)) + 
+            geom_point(aes(text = Hospital.Name), alpha = 0.4) + 
             geom_smooth(se = F) + 
             labs(x = input$xyear1, y = input$yyear1)
         
@@ -103,7 +105,7 @@ shinyServer(function(input, output) {
     
     output$scatter2 <- renderPlotly({
         plot1 <- ggplot(data = measuresloc_year2(), aes(x = .data[[input$xvar2]], y = .data[[input$yvar2]])) + 
-            geom_point(aes(text = Hospital.Name)) + geom_smooth(se = F)
+            geom_point(aes(text = Hospital.Name), alpha = 0.4) + geom_smooth(se = F)
         
         ggplotly(plot1, tooltip = "text")
     })

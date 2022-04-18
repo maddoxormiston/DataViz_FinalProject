@@ -79,3 +79,8 @@ g2 <- ggplot(data = measuresloc_2008, aes(x = Episiotomy, y = Analgesia)) +
 
 ggplotly(g2, tooltip = "label")
 ```
+
+```{r}
+## install.packages("shinythemes")
+```
+

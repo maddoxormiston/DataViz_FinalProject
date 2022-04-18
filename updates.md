@@ -45,3 +45,6 @@ Figured out error on first scatterplot, working through reactive line plot. Stuc
 ## April 11 Beginning of Class
 
 Figured out map marker click tab! Fixed incorrect lat/lon values for some hospitals in hospitalsgeocode.csv. Line plot tab only works with submit button so need to fix that. 
+
+## April 18 Beginning of Class
+Worked on some theme/visualization parts of the app. Having a difficult time figuring out how to make tabs work without submit button on either tabs, also want to change icon markers in leaflets.

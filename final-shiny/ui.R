@@ -2,12 +2,13 @@ library(shiny)
 library(here)
 library(leaflet)
 library(plotly)
+library(shinythemes)
 
 measuresloc_df <- read.csv(here("data/measuresloc.csv"))
 var_choices <- names(measuresloc_df)[c(5:35)]
 year_choices <- c(2008:2017)
 
-shinyUI(navbarPage("Maternity Data for New York", 
+shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York", 
                    tabPanel("Leaflet", 
                             sidebarPanel(
                               selectInput("leafletvar",
@@ -24,6 +25,8 @@ shinyUI(navbarPage("Maternity Data for New York",
                               selectInput("linevar",
                                           label = "Select a variable",
                                           choices = var_choices), 
+                              p("Select a hospital on the map to view on the line plot, 
+                                then press 'update selections' when ready."), 
                               submitButton("Update Selections")), 
                             mainPanel(plotOutput("tim"), leafletOutput("lineleaflet"))
                             ), 
