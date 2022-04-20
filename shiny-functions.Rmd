@@ -19,13 +19,27 @@ write.csv(measuresloc_df, "measuresloc.csv")
 measuresloc_df <- read.csv("data/measuresloc.csv")
 
 library(leaflet)
+
 awesome <- makeAwesomeIcon(
+    icon = "ios-clos",
+    iconColor = "black",
+    markerColor = "blue",
+    library = "ion"
+)
+
+awesome2 <- makeAwesomeIcon(
   icon = makeIcon(iconUrl = "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
                   iconWidth = 36, 
                   iconHeight = 36),
   iconColor = "black",
   markerColor = "blue",
   library = "ion"
+)
+
+awesome3 <- makeIcon(
+  "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
+                  iconWidth = 18, 
+                  iconHeight = 18
 )
 
 ## this will be used to create a reactive data set in the shiny app
@@ -35,10 +49,10 @@ measuresloc_2008 <- measuresloc_df %>% filter(Year == 2008) %>%
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 
   addProviderTiles(providers$Wikimedia) %>% 
-  addAwesomeMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
+  addMarkers(lng = measuresloc_2008$lon, lat = measuresloc_2008$lat, 
              popup = paste(measuresloc_2008$Hospital.Name, "<br/>", 
                            measuresloc_2008$Episiotomy), 
-                    icon = awesome)
+                    icon = awesome3)
 
 leaflet(measuresloc_df) %>% 
   addTiles() %>% 
@@ -88,5 +102,17 @@ ggplotly(g2, tooltip = "label")
 
 ```{r}
 ## install.packages("shinythemes")
+```
+
+```{r}
+r <- c(8, 4, 6, 9)
+
+y <- (1:r[1])
+for(i in 2:4){
+  y <- c(y, (1:r[i]), SIMPLIFY = FALSE)
+}
+
+z1 <- as.data.frame(y)
+z1 %>% filter(y != 0)
 ```
 

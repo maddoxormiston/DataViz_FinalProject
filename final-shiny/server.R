@@ -19,6 +19,12 @@ awesome <- makeAwesomeIcon(
     library = "ion"
 )
 
+awesome3 <- makeIcon(
+    "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
+    iconWidth = 18, 
+    iconHeight = 18
+)
+
 shinyServer(function(input, output) {
     
     measuresloc_leafletyear <- reactive({
@@ -54,11 +60,11 @@ shinyServer(function(input, output) {
         leaflet(measuresloc_leafletyear()) %>% 
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
-            addAwesomeMarkers(lng = measuresloc_leafletyear()[[4]], 
+            addMarkers(lng = measuresloc_leafletyear()[[4]], 
                               lat = measuresloc_leafletyear()[[3]], 
                        popup = paste(measuresloc_leafletyear()[[5]], "<br/>", 
                                       input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
-                       icon = awesome)
+                       icon = awesome3)
     )
     
     output$table <- renderDataTable(
@@ -76,9 +82,9 @@ shinyServer(function(input, output) {
         leaflet(measuresloc_df) %>% 
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
-            addAwesomeMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
+            addMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
                               popup = paste0(measuresloc_df$Hospital.Name), 
-                              icon = awesome)
+                              icon = awesome3)
     )
     
     temp <- reactive({
@@ -92,7 +98,7 @@ shinyServer(function(input, output) {
     output$tim <- renderPlot(
         ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                           group = Hospital.Name)) + 
-                  geom_line(alpha = 0.4) + 
+                  geom_line(alpha = 0.3) + 
                   geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
     )
     

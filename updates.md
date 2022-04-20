@@ -53,3 +53,7 @@ Worked on some theme/visualization parts of the app. Having a difficult time fig
 ## April 18 End of Class
 
 Figured out app without submit button, working on creating custom icons for the leaflets. Also want to have a line plot show up on line tab before user selects a hospital - need either base line plot or line plot with hospital already selected.
+
+## April 20 Beginning of Class
+
+Figured out custom icons! Need to work on line plot that appears when tab is opened.
