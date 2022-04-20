@@ -57,3 +57,7 @@ Figured out app without submit button, working on creating custom icons for the 
 ## April 20 Beginning of Class
 
 Figured out custom icons! Need to work on line plot that appears when tab is opened.
+
+## April 20 End of Class
+
+Spent a while figuring out how to get Git back on R after a computer update, figured that out and now working on line plot tab.

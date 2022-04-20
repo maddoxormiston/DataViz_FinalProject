@@ -17,7 +17,4 @@ line plot: select a county, select a hospital?, select a category, select a meas
 scatterplot: options: compare one variable over different years, compare multiple variables:
 - first option: choose variable, choose year for x- and y-axis
 - second option: choose year, choose variable for x- and y-axis
-add an option to aggregate over all years?
 
-https://github.com/rstudio/shiny/issues/1426
-https://shiny.rstudio.com/reference/shiny/latest/actionButton.html

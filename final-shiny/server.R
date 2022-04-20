@@ -12,13 +12,6 @@ measuresloc_maxyear <- measuresloc_df %>% group_by(Hospital.Name) %>%
 
 hospitalsgeocode_df <- read.csv(here("data/hospitalsgeocode.csv"))
 
-awesome <- makeAwesomeIcon(
-    icon = "ios-clos",
-    iconColor = "black",
-    markerColor = "blue",
-    library = "ion"
-)
-
 awesome3 <- makeIcon(
     "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
     iconWidth = 18, 
@@ -91,15 +84,20 @@ shinyServer(function(input, output) {
         measuresloc_df %>% filter(lon == input$lineleaflet_marker_click$lng)
     })
     
-    output$lon <- renderPrint(
-        input$lineleaflet_marker_click$lng
-    )
-    
     output$tim <- renderPlot(
         ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                           group = Hospital.Name)) + 
                   geom_line(alpha = 0.3) + 
                   geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+    )
+    
+    output$tim2 <- renderPlot(
+        g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                          group = Hospital.Name)) + geom_line(alpha = 0.3)
+        if(input$lineleaflet_marker_click){
+            g <- g + geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+        }
+        return(g)
     )
     
     output$scatter1 <- renderPlotly({

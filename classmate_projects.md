@@ -25,3 +25,7 @@ Clara is making a shiny app that has multiple tabs showing brewery data that all
 ## April 18
 
 Claire made a shiny app that displays a NHL team's stats throughout different seasons and has separate lines on the scatterplot for before and after Vegas odds, as well as a data table output that summarizes the stats. She is working on cleaning up the app and making it more presentable.
+
+## April 20
+
+Jack is creating two different shiny apps for Liberty League baseball data to visualize stats at the individual and team level. He has the team's logo as the marker on the lollipop chart and is working on some visual fixes to it, as well as collecting all individual data to create the second app.
