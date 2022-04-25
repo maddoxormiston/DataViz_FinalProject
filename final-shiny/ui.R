@@ -25,9 +25,9 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                           label = "Select a variable",
                                           choices = var_choices), 
                               p("Select a hospital on the map to view on the line plot.")), 
-                            mainPanel(plotOutput("tim3"), leafletOutput("lineleaflet"))
+                            mainPanel(plotOutput("lineplot"), leafletOutput("lineleaflet"))
                             ), 
-                   tabPanel("Scatter1", 
+                   tabPanel("Year vs Year Scatterplot", 
                             sidebarPanel(selectInput("var1",
                                                      label = "Select a variable",
                                                      choices = var_choices), 
@@ -36,10 +36,11 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                                      choices = year_choices), 
                                          selectInput("yyear1", 
                                                      label = "Select a year for the y-axis", 
-                                                     choices = year_choices)), 
+                                                     choices = year_choices, 
+                                                     selected = "2017")), 
                             mainPanel(plotlyOutput("scatter1"))
                             ), 
-                   tabPanel("Scatter2", 
+                   tabPanel("Var vs Var Scatterplot", 
                             sidebarPanel(selectInput("year2",
                                                      label = "Select a year",
                                                      choices = year_choices), 
@@ -48,7 +49,8 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                                      choices = var_choices), 
                                          selectInput("yvar2", 
                                                      label = "Select a variable for the y-axis", 
-                                                     choices = var_choices)), 
+                                                     choices = var_choices, 
+                                                     selected = "Repeat.Cesarean")), 
                             mainPanel(plotlyOutput("scatter2"))
                    )
 ))

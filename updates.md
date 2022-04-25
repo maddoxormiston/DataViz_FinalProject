@@ -65,3 +65,7 @@ Spent a while figuring out how to get Git back on R after a computer update, fig
 ## April 25 Beginning of Class
 
 Working on line plot tab. Tried a few different filter options and some if and if/else statements.
+
+## April 25 End of Class
+
+Firugred out line plot! Used is.null(). Started cleaning up server file so there was no unnecessary code. Changes some names in ui and server sides. Made line plot more readable along with leaflet popups.

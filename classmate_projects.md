@@ -29,3 +29,7 @@ Claire made a shiny app that displays a NHL team's stats throughout different se
 ## April 20
 
 Jack is creating two different shiny apps for Liberty League baseball data to visualize stats at the individual and team level. He has the team's logo as the marker on the lollipop chart and is working on some visual fixes to it, as well as collecting all individual data to create the second app.
+
+## April 25
+
+James has been working on wrangling his tennis data and getting it into a workable format to use for his shiny app. His next steps will be to use the data and functions he's come up with and put them into a shiny app.

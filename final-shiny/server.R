@@ -7,12 +7,9 @@ library(here)
 
 measuresloc_df <- read.csv(here("data/measuresloc.csv"))
 measuresloc_df <- measuresloc_df %>% mutate(id = row_number())
-measuresloc_maxyear <- measuresloc_df %>% group_by(Hospital.Name) %>% 
-    summarise(Year = max(Year))
-
 hospitalsgeocode_df <- read.csv(here("data/hospitalsgeocode.csv"))
 
-awesome3 <- makeIcon(
+hospital <- makeIcon(
     "https://gizmobrewworks.com/wp-content/uploads/leaflet-maps-marker-icons/hospital-2.png", 
     iconWidth = 18, 
     iconHeight = 18
@@ -54,21 +51,14 @@ shinyServer(function(input, output) {
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
             addMarkers(lng = measuresloc_leafletyear()[[4]], 
-                              lat = measuresloc_leafletyear()[[3]], 
-                       popup = paste(measuresloc_leafletyear()[[5]], "<br/>", 
-                                      input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
-                       icon = awesome3)
+                              lat = measuresloc_leafletyear()[[3]],
+                       popup = paste("<strong>", measuresloc_leafletyear()[[5]], "<br/>", 
+                                     "</strong>", input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
+                       icon = hospital)
     )
     
     output$table <- renderDataTable(
         measuresloc_leafletyear()
-    )
-    
-    output$line <- renderPlot(
-        ggplot(data = measuresloc_linecounty(), aes(x = Year, y = .data[[input$linevar]], 
-                                                    group = Hospital.Name)) + 
-            geom_line() + 
-            geom_label_repel(aes(label = Hospital.Name))
     )
     
     output$lineleaflet <- renderLeaflet(
@@ -77,45 +67,25 @@ shinyServer(function(input, output) {
             addProviderTiles(providers$Wikimedia) %>% 
             addMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
                               popup = paste0(measuresloc_df$Hospital.Name), 
-                              icon = awesome3)
+                              icon = hospital)
     )
     
     temp <- reactive({
         measuresloc_df %>% filter(lon == input$lineleaflet_marker_click$lng)
     })
-    
-    output$tim <- renderPlot({
-        ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
-                                          group = Hospital.Name)) + 
-                  geom_line(alpha = 0.3) + 
-                  geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
-    })
-    
-    output$tim2 <- renderPlot({
-        if(input$lineleaflet_marker_click){
-            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
-                                                   group = Hospital.Name)) + 
-                geom_line(alpha = 0.3) + 
-                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
-        }
-        else{
-            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
-                                                   group = Hospital.Name)) + 
-                geom_line(alpha = 0.3)
-        }
-        return(g)
-    })
-    
-    output$tim3 <- renderPlot({
+
+    output$lineplot <- renderPlot({
         g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                group = Hospital.Name)) + 
-            geom_line(alpha = 0.3)
-        if(input$lineleaflet_marker_click){
-            g <- g + 
-                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+            geom_line(alpha = 0.2)
+        if(is.null(input$lineleaflet_marker_click)){
+            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                                   group = Hospital.Name)) + 
+                geom_line(alpha = 0.2)
         }
         else{
-            g
+            g <- g + 
+                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red", size = 1)
         }
         return(g)
     })
@@ -124,7 +94,7 @@ shinyServer(function(input, output) {
         g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 
             geom_point(aes(text = Hospital.Name), alpha = 0.4) + 
             geom_smooth(se = F) + 
-            labs(x = input$xyear1, y = input$yyear1)
+            labs(x = input$xyear1, y = input$yyear1, title = "Compare a variable over time")
         
         ggplotly(g1, tooltip = "text")
     })
@@ -132,7 +102,8 @@ shinyServer(function(input, output) {
     output$scatter2 <- renderPlotly({
         plot1 <- ggplot(data = measuresloc_year2(), aes(x = .data[[input$xvar2]], 
                                                         y = .data[[input$yvar2]])) + 
-            geom_point(aes(text = Hospital.Name), alpha = 0.4) + geom_smooth(se = F)
+            geom_point(aes(text = Hospital.Name), alpha = 0.4) + geom_smooth(se = F) + 
+            labs(title = "Compare two variables within a year")
         
         ggplotly(plot1, tooltip = "text")
     })
