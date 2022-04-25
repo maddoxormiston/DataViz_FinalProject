@@ -84,21 +84,41 @@ shinyServer(function(input, output) {
         measuresloc_df %>% filter(lon == input$lineleaflet_marker_click$lng)
     })
     
-    output$tim <- renderPlot(
+    output$tim <- renderPlot({
         ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                           group = Hospital.Name)) + 
                   geom_line(alpha = 0.3) + 
                   geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
-    )
+    })
     
-    output$tim2 <- renderPlot(
-        g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
-                                          group = Hospital.Name)) + geom_line(alpha = 0.3)
+    output$tim2 <- renderPlot({
         if(input$lineleaflet_marker_click){
-            g <- g + geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                                   group = Hospital.Name)) + 
+                geom_line(alpha = 0.3) + 
+                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+        }
+        else{
+            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                                   group = Hospital.Name)) + 
+                geom_line(alpha = 0.3)
         }
         return(g)
-    )
+    })
+    
+    output$tim3 <- renderPlot({
+        g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+                                               group = Hospital.Name)) + 
+            geom_line(alpha = 0.3)
+        if(input$lineleaflet_marker_click){
+            g <- g + 
+                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red")
+        }
+        else{
+            g
+        }
+        return(g)
+    })
     
     output$scatter1 <- renderPlotly({
         g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 

@@ -61,3 +61,7 @@ Figured out custom icons! Need to work on line plot that appears when tab is ope
 ## April 20 End of Class
 
 Spent a while figuring out how to get Git back on R after a computer update, figured that out and now working on line plot tab.
+
+## April 25 Beginning of Class
+
+Working on line plot tab. Tried a few different filter options and some if and if/else statements.
