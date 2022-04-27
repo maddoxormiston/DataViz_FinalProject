@@ -52,5 +52,14 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                                      choices = var_choices, 
                                                      selected = "Repeat.Cesarean")), 
                             mainPanel(plotlyOutput("scatter2"))
-                   )
+                   ), 
+                   tabPanel("About", 
+                            h3("About this project"), 
+                            h5("This is an interactive R shiny app that lets the user investigate 
+                               various maternity measures across years at individual hospitals in 
+                               New York State. Spatial visualizations and graphical analyses are 
+                               created using New York State’s Hospital Maternity Information."), 
+                            h5("This app was developed by Maddox Ormiston for a Data Visualization
+                               class in 2022 led by Dr. Matt Higham, professor of Statistics
+                               at St. Lawrence University."))
 ))

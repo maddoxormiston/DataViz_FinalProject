@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
             addMarkers(lng = measuresloc_leafletyear()[[4]], 
                               lat = measuresloc_leafletyear()[[3]],
                        popup = paste("<strong>", measuresloc_leafletyear()[[5]], "<br/>", 
-                                     "</strong>", input$leafletvar, ": ", measuresloc_leafletyear()[[1]]), 
+                                     "</strong>", input$leafletvar, measuresloc_leafletyear()[[1]]), 
                        icon = hospital)
     )
     
@@ -66,7 +66,7 @@ shinyServer(function(input, output) {
             addTiles() %>% 
             addProviderTiles(providers$Wikimedia) %>% 
             addMarkers(lng = measuresloc_df$lon, lat = measuresloc_df$lat, 
-                              popup = paste0(measuresloc_df$Hospital.Name), 
+                              popup = paste0("<strong>", measuresloc_df$Hospital.Name, "</strong>"), 
                               icon = hospital)
     )
     

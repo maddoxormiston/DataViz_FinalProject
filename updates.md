@@ -68,4 +68,8 @@ Working on line plot tab. Tried a few different filter options and some if and i
 
 ## April 25 End of Class
 
-Firugred out line plot! Used is.null(). Started cleaning up server file so there was no unnecessary code. Changes some names in ui and server sides. Made line plot more readable along with leaflet popups.
+Figured out line plot! Used is.null(). Started cleaning up server file so there was no unnecessary code. Changes some names in ui and server sides. Made line plot more readable along with leaflet popups.
+
+## April 27 Beginning of Class
+
+Added an about tab with a description of the project. Changed some popup labels to tidy up app's appearance.
