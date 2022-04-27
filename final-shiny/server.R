@@ -27,7 +27,7 @@ shinyServer(function(input, output) {
     })
     
     measuresloc_var <- reactive({
-        measuresloc_df %>% select(Year, Hospital.Name, input$var1)
+        measuresloc_df %>% select(Year, Hospital.Name, input$var1, Hospital.County)
     })
     
     xvar <- reactive({
@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
             addMarkers(lng = measuresloc_leafletyear()[[4]], 
                               lat = measuresloc_leafletyear()[[3]],
                        popup = paste("<strong>", measuresloc_leafletyear()[[5]], "<br/>", 
-                                     "</strong>", input$leafletvar, measuresloc_leafletyear()[[1]]), 
+                                     "</strong>", input$leafletvar, ":", measuresloc_leafletyear()[[1]]), 
                        icon = hospital)
     )
     
@@ -91,8 +91,8 @@ shinyServer(function(input, output) {
     })
     
     output$scatter1 <- renderPlotly({
-        g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[5]])) + 
-            geom_point(aes(text = Hospital.Name), alpha = 0.4) + 
+        g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[6]])) + 
+            geom_point(aes(colour = both_df()[[4]], paste("<br>", Hospital.Name, "<br> County: ", both_df()[[4]])), alpha = 0.4) + 
             geom_smooth(se = F) + 
             labs(x = input$xyear1, y = input$yyear1, title = "Compare a variable over time")
         

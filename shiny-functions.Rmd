@@ -78,8 +78,9 @@ ggplotly(g, tooltip = "label")
 ```
 
 ```{r}
+library(plotly)
 ## first scatterplot:
-measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
+measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy", Hospital.County)
 
 xvar <- measuresloc_var %>% filter(Year == 2008)
 
@@ -87,9 +88,9 @@ yvar <- measuresloc_var %>% filter(Year == 2011)
 
 both_df <- full_join(xvar, yvar, by = "Hospital.Name")
 
-ggplot(data = both_df, aes(x = both_df[[3]], y = both_df[[5]])) + geom_point()
+g1 <- ggplot(data = both_df, aes(x = both_df[[3]], y = both_df[[6]])) + geom_point(aes(colour = both_df[[4]], text = paste("<br>", Hospital.Name, "<br> County: ", both_df[[4]])))
 
-ggplotly(g1, tooltip = "label")
+ggplotly(g1, tooltip = "text")
 ```
 
 ```{r}

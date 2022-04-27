@@ -73,3 +73,7 @@ Figured out line plot! Used is.null(). Started cleaning up server file so there 
 ## April 27 Beginning of Class
 
 Added an about tab with a description of the project. Changed some popup labels to tidy up app's appearance.
+
+## April 27 End of Class
+
+Imported an image to the about tab, working on adding hospital county to the color of points and the label in plotly scatterplots.
