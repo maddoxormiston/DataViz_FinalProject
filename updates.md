@@ -77,3 +77,7 @@ Added an about tab with a description of the project. Changed some popup labels 
 ## April 27 End of Class
 
 Imported an image to the about tab, working on adding hospital county to the color of points and the label in plotly scatterplots.
+
+## May 2 Beginning of Class
+
+Colored points of both plotly scatterplots by hospital's county and added it to the label. Working on saving all changes to the server to update my app at https://stlawu.shinyapps.io/MaternityMap2/.

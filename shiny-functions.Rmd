@@ -65,6 +65,7 @@ leaflet(measuresloc_df) %>%
 
 ```{r}
 library(plotly)
+library(tidyverse)
 
 ## line plot:
 measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")

@@ -75,26 +75,31 @@ shinyServer(function(input, output) {
     })
 
     output$lineplot <- renderPlot({
-        g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+        yvar <- reactive({.data[[input$linevar]]})
+        g <- ggplot(data = measuresloc_df, aes(x = Year, y = yvar(), 
                                                group = Hospital.Name)) + 
-            geom_line(alpha = 0.2)
+            geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
         if(is.null(input$lineleaflet_marker_click)){
-            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
+            g <- ggplot(data = measuresloc_df, aes(x = Year, y = yvar(), 
                                                    group = Hospital.Name)) + 
-                geom_line(alpha = 0.2)
+                geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
         }
         else{
             g <- g + 
-                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), colour = "red", size = 1)
+                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), 
+                          colour = "red", size = 1)
         }
         return(g)
     })
     
     output$scatter1 <- renderPlotly({
         g1 <- ggplot(data = both_df(), aes(x = both_df()[[3]], y = both_df()[[6]])) + 
-            geom_point(aes(colour = both_df()[[4]], paste("<br>", Hospital.Name, "<br> County: ", both_df()[[4]])), alpha = 0.4) + 
+            geom_point(aes(colour = both_df()[[4]], 
+                           text = (paste("<br>", Hospital.Name, "<br> County: ", both_df()[[4]]))), 
+                       alpha = 0.4) + 
             geom_smooth(se = F) + 
-            labs(x = input$xyear1, y = input$yyear1, title = "Compare a variable over time")
+            labs(x = input$xyear1, y = input$yyear1, title = "Compare a variable over time") + 
+            theme(legend.position = "none")
         
         ggplotly(g1, tooltip = "text")
     })
@@ -102,8 +107,12 @@ shinyServer(function(input, output) {
     output$scatter2 <- renderPlotly({
         plot1 <- ggplot(data = measuresloc_year2(), aes(x = .data[[input$xvar2]], 
                                                         y = .data[[input$yvar2]])) + 
-            geom_point(aes(text = Hospital.Name), alpha = 0.4) + geom_smooth(se = F) + 
-            labs(title = "Compare two variables within a year")
+            geom_point(aes(colour = Hospital.County, text = 
+                               paste("<br>", Hospital.Name, "<br> County: ", Hospital.County)), 
+                       alpha = 0.4) + 
+            geom_smooth(se = F) + 
+            labs(title = "Compare two variables within a year") + 
+            theme(legend.position = "none")
         
         ggplotly(plot1, tooltip = "text")
     })
