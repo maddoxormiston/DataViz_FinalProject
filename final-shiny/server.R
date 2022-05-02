@@ -75,12 +75,11 @@ shinyServer(function(input, output) {
     })
 
     output$lineplot <- renderPlot({
-        yvar <- reactive({.data[[input$linevar]]})
-        g <- ggplot(data = measuresloc_df, aes(x = Year, y = yvar(), 
+        g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                group = Hospital.Name)) + 
             geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
         if(is.null(input$lineleaflet_marker_click)){
-            g <- ggplot(data = measuresloc_df, aes(x = Year, y = yvar(), 
+            g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                    group = Hospital.Name)) + 
                 geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
         }
