@@ -53,7 +53,8 @@ shinyServer(function(input, output) {
             addMarkers(lng = measuresloc_leafletyear()[[4]], 
                               lat = measuresloc_leafletyear()[[3]],
                        popup = paste("<strong>", measuresloc_leafletyear()[[5]], "<br/>", 
-                                     "</strong>", input$leafletvar, ":", measuresloc_leafletyear()[[1]]), 
+                                     "</strong>", input$leafletvar, ":", 
+                                     measuresloc_leafletyear()[[1]]), 
                        icon = hospital)
     )
     
@@ -77,18 +78,21 @@ shinyServer(function(input, output) {
     output$lineplot <- renderPlot({
         g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                group = Hospital.Name)) + 
-            geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
+            geom_line(aes(text = Hospital.Name), alpha = 0.2) + 
+            theme(axis.title = element_text(size = 20))
         if(is.null(input$lineleaflet_marker_click)){
             g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                    group = Hospital.Name)) + 
-                geom_line(alpha = 0.2) + theme(axis.title = element_text(size = 20))
+                geom_line(aes(text = Hospital.Name), alpha = 0.2) + 
+                theme(axis.title = element_text(size = 20))
         }
         else{
             g <- g + 
-                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]]), 
+                geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]], 
+                                             text = Hospital.Name), 
                           colour = "red", size = 1)
         }
-        return(g)
+        ggplotly(g, tooltip = "text")
     })
     
     output$scatter1 <- renderPlotly({
