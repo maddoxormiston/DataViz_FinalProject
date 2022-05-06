@@ -73,7 +73,7 @@ measuresloc_var <- measuresloc_df %>% select(Year, Hospital.Name, "Episiotomy")
 line_hospital <- measuresloc_var %>% filter(Hospital.Name == "Adirondack Medical Center-Saranac Lake Site")
 
 line1 <- ggplot(data = measuresloc_var, aes(x = Year, y = Episiotomy, group = Hospital.Name)) + 
-  geom_line(aes(text = Hospital.Name)) + geom_line(data = line_hospital, aes(x = Year, y = Episiotomy), colour = "red")
+  geom_line(aes(text = Hospital.Name)) + geom_line(data = line_hospital, aes(x = Year, y = Episiotomy), colour = "red") + scale_x_continuous(breaks=seq(2008, 2017, 1))
 
 line2 <- ggplot(data = measuresloc_var, aes(x = Year, y = Episiotomy, group = Hospital.Name)) + geom_line(aes(text = Hospital.Name))
 

@@ -79,18 +79,21 @@ shinyServer(function(input, output) {
         g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                group = Hospital.Name)) + 
             geom_line(aes(text = Hospital.Name), alpha = 0.2) + 
-            theme(axis.title = element_text(size = 20))
+            theme(axis.title = element_text(size = 20)) + 
+            scale_x_continuous(breaks=seq(2008, 2017, 1))
         if(is.null(input$lineleaflet_marker_click)){
             g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                    group = Hospital.Name)) + 
                 geom_line(aes(text = Hospital.Name), alpha = 0.2) + 
-                theme(axis.title = element_text(size = 20))
+                theme(axis.title = element_text(size = 20)) + 
+                scale_x_continuous(breaks=seq(2008, 2017, 1))
         }
         else{
             g <- g + 
                 geom_line(data = temp(), aes(x = Year, y = .data[[input$linevar]], 
                                              text = Hospital.Name), 
-                          colour = "red", size = 1)
+                          colour = "red", size = 1) + 
+                scale_x_continuous(breaks=seq(2008, 2017, 1))
         }
         ggplotly(g, tooltip = "text")
     })
