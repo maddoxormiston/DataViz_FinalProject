@@ -25,7 +25,7 @@ shinyUI(navbarPage(theme = shinytheme("superhero"), "Maternity Data for New York
                                           label = "Select a variable",
                                           choices = var_choices), 
                               p("Select a hospital on the map to view on the line plot.")), 
-                            mainPanel(plotOutput("lineplot"), leafletOutput("lineleaflet"))
+                            mainPanel(plotlyOutput("lineplot"), leafletOutput("lineleaflet"))
                             ), 
                    tabPanel("Year vs Year Scatterplot", 
                             sidebarPanel(selectInput("var1",

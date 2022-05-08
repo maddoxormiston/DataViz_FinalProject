@@ -75,7 +75,7 @@ shinyServer(function(input, output) {
         measuresloc_df %>% filter(lon == input$lineleaflet_marker_click$lng)
     })
 
-    output$lineplot <- renderPlot({
+    output$lineplot <- renderPlotly({
         g <- ggplot(data = measuresloc_df, aes(x = Year, y = .data[[input$linevar]], 
                                                group = Hospital.Name)) + 
             geom_line(aes(text = Hospital.Name), alpha = 0.2) + 
